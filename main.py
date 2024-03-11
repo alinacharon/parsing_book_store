@@ -31,7 +31,7 @@ def download_image(image_url, folder_name, filename):
     return filepath
 
 def get_book_details(book_url, image_folder, title):
-    #Récupère les détails d'un livre à partir de son URL.
+    #Récupère les détails d'un livre.
     book_url = book_url.replace('index.html', '').replace('catalogue/', '')
     full_url = f'{BASE_URL}catalogue/{book_url}index.html'
     soup = get_soup(full_url)
@@ -59,7 +59,7 @@ def get_book_details(book_url, image_folder, title):
 
 
 def get_books_in_category(category_url, image_folder):
-    #Récupère tous les livres dans une catégorie spécifiée.
+    #Récupère tous les livres dans une catégorie.
     books = []
     page_number = 1
     while True:
