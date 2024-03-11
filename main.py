@@ -36,16 +36,17 @@ def get_book_details(book_url, image_folder, title):
     full_url = f'{BASE_URL}catalogue/{book_url}index.html'
     soup = get_soup(full_url)
 
+    book_title = soup.find('div', class_='product_main').h1.text
     product_info = soup.find('table', class_='table table-striped').find_all('td')
     description = soup.find('meta', attrs={'name': 'description'})['content'].strip()
     category = soup.find('ul', class_='breadcrumb').find_all('li')[2].text.strip()
     rating = soup.select_one('p.star-rating')['class'][1]
     image_url = BASE_URL + soup.find('img')['src']
     upc = soup.find("th", string="UPC").find_next_sibling("td").text
-    filename = download_image(image_url, image_folder, f'{title}.jpg'.replace ('/',' ' ))
+    filename = download_image(image_url, image_folder, f'{book_title}.jpg'.replace ('/',' ' ))
     return {
         'upc': upc,
-        'title': soup.find('div', class_='product_main').h1.text,
+        'title': book_title,
         'price_incl_tax': product_info[3].text.replace('Â',''),
         'price_excl_tax': product_info[2].text.replace('Â',''),
         'availability': product_info[5].text.split('(')[1].split(' ')[0],
@@ -97,7 +98,7 @@ def main():
     for category in categories[1:]:  # sauter le premier car ce n'est pas une catégorie
         category_name = category.text.strip()
         category_url = BASE_URL + category['href']
-        print("Traitement de la catégorie:", category_name)  # Message de processus 
+        print('Traitement de la catégorie:', category_name, 'est en cours')  # Message de processus 
         books = get_books_in_category(category_url, image_folder)
         save_books_to_csv(books, category_name, folder_name)
         print(f'{len(books)} livres enregistrés dans la catégorie {category_name} dans le dossier {folder_name}')
