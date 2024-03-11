@@ -1,10 +1,13 @@
-# Fichiers et dossiers générés par Python
-__pycache__/
-*.pyc
+# Environnement virtuel
+venv/
 
-# Fichiers CSV et images téléchargées
+# Fichiers CSV et images extraites
 Books_csv/
 Books_images/
 
-# Environnement virtuel Python
-venv/
+# Fichiers de configuration
+*.pyc
+__pycache__/
+
+# Fichiers temporaires
+*.tmp
