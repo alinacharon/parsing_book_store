@@ -20,6 +20,6 @@ Ce script Python est conçu pour récupérer des informations sur les livres à 
 - Le script utilise la bibliothèque `requests` pour effectuer des requêtes HTTP et récupérer le contenu HTML des pages.
 - La bibliothèque `BeautifulSoup` est utilisée pour analyser le code HTML et extraire les informations nécessaires.
 - Les informations sur les livres sont extraites de différentes pages du site en parcourant les catégories et les pages de résultats.
-- Les détails des livres sont ensuite enregistrés dans des fichiers CSV et les images de couverture sont téléchargées dans un dossier spécifié.
+- Les détails des livres sont ensuite enregistrés dans des fichiers CSV et les images de couverture sont téléchargées dans un dossier dédié.
 
 Pour toute question ou suggestion, veuillez contacter alina.charon@gmail.com
