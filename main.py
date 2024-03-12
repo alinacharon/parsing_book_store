@@ -16,7 +16,7 @@ def save_books_to_csv(books, category_name, folder_name="Books_csv"):
     if not os.path.exists(folder_name):
         os.makedirs(folder_name)
     file_path = os.path.join(folder_name, f'{category_name}.csv')
-    with open(file_path, 'w', newline='', encoding='utf-8') as file:
+    with open(file_path, 'w', encoding='utf-8') as file:
         writer = csv.writer(file)
         writer.writerow(['UPC', 'Title', 'Price (incl. tax)', 'Price (excl. tax)', 'Availability', 'Description', 'Category', 'Rating', 'Image URL'])
         for book in books:
@@ -30,7 +30,7 @@ def download_image(image_url, folder_name, filename):
         file.write(response.content)
     return filepath
 
-def get_book_details(book_url, image_folder, title):
+def get_book_details(book_url, image_folder, book_title):
     #Récupère les détails d'un livre.
     book_url = book_url.replace('index.html', '').replace('catalogue/', '')
     full_url = f'{BASE_URL}catalogue/{book_url}index.html'
@@ -95,7 +95,7 @@ def main():
     soup = get_soup(BASE_URL)
     categories = soup.select('.side_categories ul li a')
     
-    for category in categories[1:]:  # sauter le premier car ce n'est pas une catégorie
+    for category in categories[1:]: 
         category_name = category.text.strip()
         category_url = BASE_URL + category['href']
         print('Traitement de la catégorie:', category_name, 'est en cours')  # Message de processus 

@@ -9,5 +9,4 @@ Books_images/
 *.pyc
 __pycache__/
 
-# Fichiers temporaires
-*.tmp
+
