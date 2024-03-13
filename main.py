@@ -29,23 +29,23 @@ def download_image(image_url, folder_name, filename):
         response = requests.get(image_url)
         file.write(response.content)
 
-def get_book_details(book_url, image_folder, book_title):
+def get_book_details(book_url, image_folder, title):
     #Récupère les détails d'un livre.
     book_url = book_url.replace('index.html', '').replace('catalogue/', '')
     full_url = f'{BASE_URL}catalogue/{book_url}index.html'
     soup = get_soup(full_url)
 
-    book_title = soup.find('div', class_='product_main').h1.text
+    title = soup.find('div', class_='product_main').h1.text
     product_info = soup.find('table', class_='table table-striped').find_all('td')
     description = soup.find('meta', attrs={'name': 'description'})['content'].strip()
     category = soup.find('ul', class_='breadcrumb').find_all('li')[2].text.strip()
     rating = soup.select_one('p.star-rating')['class'][1]
     image_url = BASE_URL + soup.find('img')['src']
     upc = soup.find("th", string="UPC").find_next_sibling("td").text
-    filename = download_image(image_url, image_folder, f'{book_title}.jpg'.replace ('/',' ' ))
+    filename = download_image(image_url, image_folder, f'{title}.jpg'.replace ('/',' ' ))
     return {
         'upc': upc,
-        'title': book_title,
+        'title': title,
         'price_incl_tax': product_info[3].text.replace('Â',''),
         'price_excl_tax': product_info[2].text.replace('Â',''),
         'availability': product_info[5].text.split('(')[1].split(' ')[0],
