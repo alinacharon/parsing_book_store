@@ -28,7 +28,6 @@ def download_image(image_url, folder_name, filename):
     with open(filepath, 'wb') as file:
         response = requests.get(image_url)
         file.write(response.content)
-    return filepath
 
 def get_book_details(book_url, image_folder, book_title):
     #Récupère les détails d'un livre.
