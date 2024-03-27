@@ -11,9 +11,11 @@ Ce script Python est conçu pour récupérer des informations sur les livres à 
 
 ## Utilisation
 
-1. Assurez-vous d'avoir Python 3 installé sur votre système.
-2. Installez les dépendances en exécutant `pip install -r requirements.txt`.
-3. Exécutez le script principal `main.py` pour démarrer le processus de récupération des informations.
+  1.	Assurez-vous d’avoir Python 3 installé sur votre système.
+	2.	Créez un environnement virtuel avec la commande appropriée pour votre système d’exploitation: python -m venv venv pour Windows ou python3 -m venv venv pour Linux/Mac.
+	3.	Activez l’environnement virtuel: source venv/bin/activate pour Linux/Mac ou venv\Scripts\activate pour Windows.
+  4.  Installez les dépendances en exécutant pip install -r requirements.txt.
+	5.	Exécutez le script principal main.py pour démarrer le processus de récupération des informations.
 
 ## Comment ça marche
 
